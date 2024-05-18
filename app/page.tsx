@@ -1,7 +1,9 @@
+import { FundMe } from "./components/FundMe/FundMe";
+
 export default function Home() {
   return (
-    <main className="">
-      <div className=""></div>
+    <main className="p-4">
+      <FundMe />
     </main>
   );
 }
