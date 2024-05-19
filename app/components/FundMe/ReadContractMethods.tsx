@@ -4,7 +4,13 @@ import { Abi, Address } from "viem";
 import { useReadContract } from "wagmi";
 import { GetAmountByAddressForm } from "./GetAmountByAddressForm";
 
-export const Contract = ({ abi, address }: { abi: Abi; address: Address }) => {
+export const ReadContractMethods = ({
+  abi,
+  address,
+}: {
+  abi: Abi;
+  address: Address;
+}) => {
   const { data: MINIMUN_USD_AMOUNT, isLoading: isMINIMUN_USD_AMOUNTLoading } =
     useReadContract({
       abi,

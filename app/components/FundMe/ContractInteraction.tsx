@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { Contract } from "./Contract";
-import { FundsForm } from "./FundsForm";
+import { ReadContractMethods } from "./ReadContractMethods";
+import { WriteContractMethods } from "./WriteContractMethods";
 
 export const ContractInteraction = () => {
   const contractAddress = "0x6c0387f7ab6c72118e54afb98a1591b5ca7d636d";
@@ -19,9 +19,9 @@ export const ContractInteraction = () => {
       ) : (
         <>
           <div className="mb-8">
-            <Contract abi={data} address={contractAddress} />
+            <ReadContractMethods abi={data} address={contractAddress} />
           </div>
-          <FundsForm abi={data} address={contractAddress} />
+          <WriteContractMethods abi={data} address={contractAddress} />
         </>
       )}
     </div>
