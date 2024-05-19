@@ -19,7 +19,7 @@ export const FundMe = () => {
 
   return (
     <div>
-      <div className="font-bold">Fund me</div>
+      <div className="font-bold text-xl">Fund me</div>
       <ContractInteraction />
     </div>
   );

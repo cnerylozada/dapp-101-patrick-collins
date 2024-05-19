@@ -18,7 +18,9 @@ export const ContractInteraction = () => {
         <div>Loading ABI code... </div>
       ) : (
         <>
-          <Contract abi={data} address={contractAddress} />
+          <div className="mb-8">
+            <Contract abi={data} address={contractAddress} />
+          </div>
           <FundsForm />
         </>
       )}
