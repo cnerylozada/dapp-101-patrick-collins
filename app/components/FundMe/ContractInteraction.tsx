@@ -21,7 +21,7 @@ export const ContractInteraction = () => {
           <div className="mb-8">
             <Contract abi={data} address={contractAddress} />
           </div>
-          <FundsForm />
+          <FundsForm abi={data} address={contractAddress} />
         </>
       )}
     </div>
