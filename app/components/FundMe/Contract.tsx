@@ -2,6 +2,7 @@
 
 import { Abi, Address } from "viem";
 import { useReadContract } from "wagmi";
+import { GetAmountByAddressForm } from "./GetAmountByAddressForm";
 
 export const Contract = ({ abi, address }: { abi: Abi; address: Address }) => {
   const { data: MINIMUN_USD_AMOUNT, isLoading: isMINIMUN_USD_AMOUNTLoading } =
@@ -17,16 +18,19 @@ export const Contract = ({ abi, address }: { abi: Abi; address: Address }) => {
         Contract Methods
       </div>
       <div>
-        {isMINIMUN_USD_AMOUNTLoading ? (
-          <div>Loading ... </div>
-        ) : (
-          <div>
-            <p>
-              <span className="font-bold">MINIMUN_USD_AMOUNT:</span>{" "}
-              <span>USD ${`${MINIMUN_USD_AMOUNT}`}</span>
-            </p>
-          </div>
-        )}
+        <div>
+          {isMINIMUN_USD_AMOUNTLoading ? (
+            <div>Loading ... </div>
+          ) : (
+            <div>
+              <p>
+                <span className="font-bold">MINIMUN_USD_AMOUNT:</span>{" "}
+                <span>USD ${`${MINIMUN_USD_AMOUNT}`}</span>
+              </p>
+            </div>
+          )}
+        </div>
+        <GetAmountByAddressForm abi={abi} address={address} />
       </div>
     </div>
   );
