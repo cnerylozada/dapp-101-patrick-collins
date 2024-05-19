@@ -54,11 +54,11 @@ export const GetAmountByAddressForm = ({
     <div>
       <div className="font-bold uppercase">addressToAmountFunded:</div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex items-center space-x-4">
+        <div className="md:flex items-center space-y-4 md:space-y-0 md:space-x-4">
           <div>
             <input
               placeholder="0xc0ffee254729296a45a3885639AC7E10F9d54979"
-              className="w-80"
+              className="w-full md:w-80 p-2"
               {...register("address")}
             />
             {errors.address && (

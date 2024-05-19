@@ -17,7 +17,7 @@ export const Contract = ({ abi, address }: { abi: Abi; address: Address }) => {
       <div className="mb-3 border-b-2 text-blue-500 font-bold">
         Contract Methods
       </div>
-      <div>
+      <div className="space-y-4">
         <div>
           {isMINIMUN_USD_AMOUNTLoading ? (
             <div>Loading ... </div>
