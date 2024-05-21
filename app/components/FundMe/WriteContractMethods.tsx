@@ -1,5 +1,6 @@
 import { Abi, Address } from "viem";
 import { SendFundsForm } from "./SendFundsForm";
+import { Withdraw } from "./Withdraw";
 
 export const WriteContractMethods = ({
   abi,
@@ -13,7 +14,10 @@ export const WriteContractMethods = ({
       <div className="mb-3 border-b-2 text-blue-500 font-bold">
         Write Contract Methods
       </div>
-      <SendFundsForm abi={abi} address={address} />
+      <div className="space-y-4">
+        <SendFundsForm abi={abi} address={address} />
+        <Withdraw />
+      </div>
     </div>
   );
 };
