@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useWriteContract } from "wagmi";
+import { useTransactionConfirmations, useWriteContract } from "wagmi";
 import { Abi, Address, parseEther } from "viem";
 import Link from "next/link";
 
@@ -17,8 +17,14 @@ export const SendFundsForm = ({
   abi: Abi;
   address: Address;
 }) => {
-  const { data, writeContract, isSuccess, error, isError, status } =
-    useWriteContract();
+  const {
+    data: txHash,
+    writeContract,
+    isSuccess,
+    error,
+    isError,
+    status,
+  } = useWriteContract();
 
   const {
     register,
@@ -37,6 +43,14 @@ export const SendFundsForm = ({
       value: parseEther(`${+data.funds}`),
     });
   };
+
+  // const { data, refetch, isLoading, isFetching } = useTransactionConfirmations({
+  //   hash: "0x26a83b8e4076a703b9dbb3c5f34d26af67188cd66f43f87e53e168a74f8a5c71",
+  //   query: {
+  //     enabled: false,
+  //   },
+  // });
+
   return (
     <div>
       <div className="font-bold uppercase">Send funds:</div>
@@ -65,7 +79,7 @@ export const SendFundsForm = ({
           <div>
             <span className="text-green-600 font-bold">Kudos ! </span>
             <Link
-              href={`https://sepolia.etherscan.io/tx/${data}`}
+              href={`https://sepolia.etherscan.io/tx/${txHash}`}
               className="text-blue-700 underline text-sm"
               target="_blank"
             >
