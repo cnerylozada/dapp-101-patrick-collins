@@ -29,7 +29,7 @@ export default function AddFundsPage() {
           <div className="mb-3 border-b-2 text-blue-500 font-bold">
             Write Contract
           </div>
-          <SendFundsForm abi={abi} address={fundMecontractAddress} />
+          <SendFundsForm abi={abi} contractAddress={fundMecontractAddress} />
         </div>
       )}
     </div>

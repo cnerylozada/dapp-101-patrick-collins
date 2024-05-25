@@ -11,7 +11,7 @@ export default function MyTransactionsPage() {
     queryKey: ["get-transactions"],
     queryFn: () =>
       fetch(
-        `https://9a701rxzrb.execute-api.us-east-2.amazonaws.com/dev/fsDapp1/fundMe/transactions`
+        `${process.env.NEXT_PUBLIC_FSDAPP1_DB}/fsDapp1/fundMe/transactions`
       ).then((_) => _.json()),
     enabled: isWallecConnected && isCorrectNetworkChoosen,
   });
@@ -30,7 +30,7 @@ export default function MyTransactionsPage() {
         {isSuccess && data && !data.transactions.length && (
           <div>No transactions to show</div>
         )}
-        {isSuccess && data && !!data.transactions.length && (
+        {isSuccess && data && data.transactions.length && (
           <div>{JSON.stringify(data.transactions)}</div>
         )}
       </div>

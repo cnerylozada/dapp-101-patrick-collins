@@ -1,14 +1,14 @@
 export interface ISaveTransactionDto {
   txHash: string;
   funderAddress: string;
-  ethAamount: number;
+  ethAmount: number;
 }
 
 export interface ITransaction {
   id: string;
   txHash: string;
   funderAddress: string;
-  ethAamount: number;
+  ethAmount: number;
   wasConfirmed: boolean;
   createdAt: number;
   updatedAt: number;

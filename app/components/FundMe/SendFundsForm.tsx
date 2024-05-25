@@ -1,10 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useWriteContract } from "wagmi";
+import { useAccount, useWriteContract } from "wagmi";
 import { Abi, Address, Hash, parseEther } from "viem";
 import Link from "next/link";
 import { ISaveTransactionDto } from "@/models/fundMe.model";
+import { useMutation } from "@tanstack/react-query";
 
 const schema = z.object({
   funds: z.string().regex(/\d+\.?\d*/),
@@ -13,19 +14,12 @@ type FundsClient = z.infer<typeof schema>;
 
 export const SendFundsForm = ({
   abi,
-  address,
+  contractAddress,
 }: {
   abi: Abi;
-  address: Address;
+  contractAddress: Address;
 }) => {
-  const {
-    data: txHash,
-    writeContract,
-    isSuccess,
-    error,
-    isError,
-    status,
-  } = useWriteContract();
+  const { address } = useAccount();
 
   const {
     register,
@@ -36,20 +30,44 @@ export const SendFundsForm = ({
     resolver: zodResolver(schema),
   });
 
-  const saveTransaction = async (txHash: Hash, ethAamount: number) => {
+  const mutation = useMutation({
+    mutationFn: (newTransaction: ISaveTransactionDto) => {
+      return fetch(
+        `${process.env.NEXT_PUBLIC_FSDAPP1_DB}/fsDapp1/fundMe/saveTransaction`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newTransaction),
+        }
+      );
+    },
+  });
+
+  const saveTransaction = async (txHash: Hash, ethAmount: number) => {
     const newTransaction: ISaveTransactionDto = {
       txHash,
-      funderAddress: "asd",
-      ethAamount,
+      funderAddress: address as string,
+      ethAmount,
     };
+    mutation.mutate(newTransaction);
   };
 
+  const {
+    data: txHash,
+    writeContract,
+    isSuccess,
+    error,
+    isError,
+    status,
+  } = useWriteContract();
   const onSubmit: SubmitHandler<FundsClient> = async (data) => {
     const funds = +data.funds;
     writeContract(
       {
         abi,
-        address,
+        address: contractAddress,
         functionName: "fund",
         value: parseEther(`${funds}`),
       },

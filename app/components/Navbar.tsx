@@ -2,13 +2,10 @@
 import { useWalletConnection } from "@/utils/wallet";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import Link from "next/link";
-import { useAccount, useDisconnect } from "wagmi";
 
 export const Navbar = () => {
   const { open } = useWeb3Modal();
-  const { disconnect } = useDisconnect();
   const { isWallecConnected } = useWalletConnection();
-  const { address } = useAccount();
 
   return (
     <div className="p-4 flex items-center bg-gray-800 border-b-2">
