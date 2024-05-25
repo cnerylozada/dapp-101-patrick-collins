@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useTransactionConfirmations, useWriteContract } from "wagmi";
+import { useWriteContract } from "wagmi";
 import { Abi, Address, parseEther } from "viem";
 import Link from "next/link";
 
@@ -43,13 +43,6 @@ export const SendFundsForm = ({
       value: parseEther(`${+data.funds}`),
     });
   };
-
-  // const { data, refetch, isLoading, isFetching } = useTransactionConfirmations({
-  //   hash: "0x26a83b8e4076a703b9dbb3c5f34d26af67188cd66f43f87e53e168a74f8a5c71",
-  //   query: {
-  //     enabled: false,
-  //   },
-  // });
 
   return (
     <div>
