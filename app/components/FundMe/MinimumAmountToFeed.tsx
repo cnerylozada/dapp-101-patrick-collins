@@ -20,11 +20,9 @@ export const MinimumAmountToFeed = ({
 
   return (
     <div>
-      <p>
-        <span className="font-bold">MINIMUN_USD_AMOUNT:</span>{" "}
-        {isLoading && <span>Loading ... </span>}
-        {isSuccess && <span>USD ${`${MINIMUN_USD_AMOUNT}`}</span>}
-      </p>
+      <span className="font-bold">MINIMUN_USD_AMOUNT:</span>{" "}
+      {isLoading && <span>Loading ... </span>}
+      {isSuccess && <span>USD ${`${MINIMUN_USD_AMOUNT}`}</span>}
     </div>
   );
 };

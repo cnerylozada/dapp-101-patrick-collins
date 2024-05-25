@@ -4,9 +4,24 @@ import {
   fundMecontractAddress,
   useFetchFundMeContract,
 } from "@/utils/fundMeContract";
+import { getBalance } from "@wagmi/core";
+import { config } from "@/config";
+import { useQuery } from "@tanstack/react-query";
+import { formatEther } from "viem";
 
 export const ReadingMethods = () => {
   const { data: abi, isLoading } = useFetchFundMeContract();
+  const {
+    data: fundMeBalance,
+    isLoading: isBalanceLoading,
+    isSuccess,
+  } = useQuery({
+    queryKey: ["fundMeBalance"],
+    queryFn: () =>
+      getBalance(config, {
+        address: fundMecontractAddress,
+      }),
+  });
 
   return (
     <>
@@ -19,6 +34,18 @@ export const ReadingMethods = () => {
               Read Contract
             </div>
             <div className="space-y-4">
+              <div>
+                <p>
+                  <span className="font-bold uppercase">balance:</span>{" "}
+                  {isBalanceLoading && <span>Loading ... </span>}
+                  {isSuccess && (
+                    <span>
+                      {`${formatEther(fundMeBalance.value)}`}{" "}
+                      {fundMeBalance.symbol}
+                    </span>
+                  )}
+                </p>
+              </div>
               <MinimumAmountToFeed abi={abi} address={fundMecontractAddress} />
               <GetAmountByAddressForm
                 abi={abi}
