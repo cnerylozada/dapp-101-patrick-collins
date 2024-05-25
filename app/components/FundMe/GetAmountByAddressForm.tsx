@@ -80,7 +80,7 @@ export const GetAmountByAddressForm = ({
       </form>
       <div>
         {isFetching && <div>Fetching amount founded...</div>}
-        {!!lastResponse && <span>ETH {`${formatEther(lastResponse)}`}</span>}
+        {!!lastResponse && <span>{`${formatEther(lastResponse)}`} ETH</span>}
       </div>
     </div>
   );

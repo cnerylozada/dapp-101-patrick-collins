@@ -30,6 +30,13 @@ export default function FundMeHomePage() {
               </button>
             </Link>
           </div>
+          <div>
+            <Link href={"fund-me/my-transactions"}>
+              <button type="button" className="p-2 rounded-md bg-yellow-300">
+                Go to My transactions
+              </button>
+            </Link>
+          </div>
           <Withdraw />
         </div>
       </div>
