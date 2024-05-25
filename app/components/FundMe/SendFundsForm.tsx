@@ -2,8 +2,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useWriteContract } from "wagmi";
-import { Abi, Address, parseEther } from "viem";
+import { Abi, Address, Hash, parseEther } from "viem";
 import Link from "next/link";
+import { ISaveTransactionDto } from "@/models/fundMe.model";
 
 const schema = z.object({
   funds: z.string().regex(/\d+\.?\d*/),
@@ -35,13 +36,29 @@ export const SendFundsForm = ({
     resolver: zodResolver(schema),
   });
 
+  const saveTransaction = async (txHash: Hash, ethAamount: number) => {
+    const newTransaction: ISaveTransactionDto = {
+      txHash,
+      funderAddress: "asd",
+      ethAamount,
+    };
+  };
+
   const onSubmit: SubmitHandler<FundsClient> = async (data) => {
-    writeContract({
-      abi,
-      address,
-      functionName: "fund",
-      value: parseEther(`${+data.funds}`),
-    });
+    const funds = +data.funds;
+    writeContract(
+      {
+        abi,
+        address,
+        functionName: "fund",
+        value: parseEther(`${funds}`),
+      },
+      {
+        onSuccess: (_) => {
+          saveTransaction(_, funds);
+        },
+      }
+    );
   };
 
   return (

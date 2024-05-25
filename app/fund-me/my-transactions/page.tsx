@@ -11,7 +11,7 @@ export default function MyTransactionsPage() {
     queryKey: ["get-transactions"],
     queryFn: () =>
       fetch(
-        `https://9a701rxzrb.execute-api.us-east-2.amazonaws.com/dev/fsDapp1/transactions`
+        `https://9a701rxzrb.execute-api.us-east-2.amazonaws.com/dev/fsDapp1/fundMe/transactions`
       ).then((_) => _.json()),
     enabled: isWallecConnected && isCorrectNetworkChoosen,
   });
