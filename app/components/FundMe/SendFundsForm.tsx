@@ -5,7 +5,7 @@ import { useAccount, useWriteContract } from "wagmi";
 import { Abi, Address, Hash, parseEther } from "viem";
 import Link from "next/link";
 import { ISaveTransactionDto } from "@/models/fundMe.model";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const schema = z.object({
   funds: z.string().regex(/\d+\.?\d*/),
@@ -30,6 +30,7 @@ export const SendFundsForm = ({
     resolver: zodResolver(schema),
   });
 
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (newTransaction: ISaveTransactionDto) => {
       return fetch(
@@ -52,6 +53,7 @@ export const SendFundsForm = ({
       ethAmount,
     };
     mutation.mutate(newTransaction);
+    queryClient.invalidateQueries({ queryKey: ["get-transactions"] });
   };
 
   const {

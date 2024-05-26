@@ -23,7 +23,7 @@ export default function FundMeHomePage() {
           Write Contract
         </div>
         <div className="md:flex md:space-x-4 space-y-4 md:space-y-0">
-          <Link href={"kfund-me/add-funds"} className="block md:inline">
+          <Link href={"fund-me/add-funds"} className="block md:inline">
             <button
               type="button"
               className="p-2 w-full md:w-auto rounded-md bg-yellow-300"

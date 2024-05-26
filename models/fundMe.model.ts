@@ -6,7 +6,6 @@ export interface ISaveTransactionDto {
 
 export interface ITransaction {
   id: string;
-  txHash: string;
   funderAddress: string;
   ethAmount: number;
   wasConfirmed: boolean;

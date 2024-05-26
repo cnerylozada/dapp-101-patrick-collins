@@ -24,7 +24,7 @@ export default function MyTransactionsPage() {
           {isSuccess && data && !data.length && (
             <div>No transactions to show</div>
           )}
-          {isSuccess && data && data.length && (
+          {isSuccess && data && !!data.length && (
             <div>
               {data.map((_, index) => (
                 <div key={_.id}>
