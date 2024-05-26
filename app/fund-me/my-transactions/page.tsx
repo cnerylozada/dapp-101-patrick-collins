@@ -1,5 +1,6 @@
 "use client";
 import { ITransaction } from "@/models/fundMe.model";
+import { formatTx } from "@/utils";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
@@ -33,7 +34,7 @@ export default function MyTransactionsPage() {
                     href={`/fund-me/my-transactions/${_.id}`}
                     className="text-blue-700"
                   >
-                    {_.id}
+                    {formatTx(_.id)}
                   </Link>
                 </div>
               ))}

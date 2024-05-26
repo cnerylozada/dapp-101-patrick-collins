@@ -1,5 +1,6 @@
 "use client";
 import { ITransaction } from "@/models/fundMe.model";
+import { formatTx } from "@/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { Hash } from "viem";
@@ -57,7 +58,7 @@ export default function MyTransactionById() {
             <div className="space-y-4">
               <p>
                 <span className="font-bold uppercase">FunderAddress:</span>{" "}
-                <span>{txDetail.funderAddress}</span>
+                <span>{formatTx(txDetail.funderAddress)}</span>
               </p>
               <p>
                 <span className="font-bold uppercase">EthAmount:</span>{" "}

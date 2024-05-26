@@ -1,11 +1,13 @@
+import { Hash } from "viem";
+
 export interface ISaveTransactionDto {
-  txHash: string;
+  txHash: Hash;
   funderAddress: string;
   ethAmount: number;
 }
 
 export interface ITransaction {
-  id: string;
+  id: Hash;
   funderAddress: string;
   ethAmount: number;
   wasConfirmed: boolean;
