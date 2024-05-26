@@ -22,21 +22,25 @@ export default function FundMeHomePage() {
         <div className="mb-3 border-b-2 text-blue-500 font-bold">
           Write Contract
         </div>
-        <div className="flex space-x-4">
-          <div>
-            <Link href={"fund-me/add-funds"}>
-              <button type="button" className="p-2 rounded-md bg-yellow-300">
-                Go to Add funds
-              </button>
-            </Link>
-          </div>
-          <div>
-            <Link href={"fund-me/my-transactions"}>
-              <button type="button" className="p-2 rounded-md bg-yellow-300">
-                Go to My transactions
-              </button>
-            </Link>
-          </div>
+        <div className="md:flex md:space-x-4 space-y-4 md:space-y-0">
+          <Link href={"kfund-me/add-funds"} className="block md:inline">
+            <button
+              type="button"
+              className="p-2 w-full md:w-auto rounded-md bg-yellow-300"
+            >
+              Go to Add funds
+            </button>
+          </Link>
+
+          <Link href={"fund-me/my-transactions"} className="block md:inline">
+            <button
+              type="button"
+              className="p-2 w-full md:w-auto rounded-md bg-yellow-300"
+            >
+              Go to My transactions
+            </button>
+          </Link>
+
           <Withdraw />
         </div>
       </div>

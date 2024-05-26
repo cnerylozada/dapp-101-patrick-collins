@@ -3,7 +3,7 @@ export const Withdraw = () => {
     <div>
       <button
         type="button"
-        className="p-2 rounded-md bg-yellow-300"
+        className="p-2 w-full md:w-auto rounded-md bg-yellow-300"
         onClick={() => {}}
       >
         Withdraw
