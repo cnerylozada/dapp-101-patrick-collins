@@ -4,7 +4,7 @@ const nextConfig = {
     config.externals.push("pino-pretty", "lokijs", "encoding");
     return config;
   },
-  distDir: "build",
+  distDir: "dist",
 };
 
 export default nextConfig;
